@@ -1,0 +1,28 @@
+#stockdiv {
+  width : 100%;
+  height  : 500px;
+}
+
+#weightdiv {
+  width : 100%;
+  height  : 500px;
+}
+
+#map {
+	height: 600px;
+	width: 100%;
+	margin: auto;
+}
+
+#fig {
+  width: 880px;
+  height: 460px;
+}
+
+#vis1{
+border:1px dotted black;
+width: 1060px; 
+height: 500px;
+position: relative;
+background: white;
+}
