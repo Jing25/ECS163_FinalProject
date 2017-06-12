@@ -139,8 +139,8 @@ rule.anchor("left").add(pv.Label)
         });
 
 rule.anchor("left").add(pv.Label)
-        .top(90)
-        .font("bold 10px sans-serif")
+        .top(60)
+        .font("bold 9px sans-serif")
         .text(function(d) {
           var number = (units[d].max - units[d].min) / 5 * 4 + units[d].min
           if(units[d].name != "Sector")
@@ -148,8 +148,8 @@ rule.anchor("left").add(pv.Label)
         });
 
     rule.anchor("left").add(pv.Label)
-        .top(180)
-        .font("bold 10px sans-serif")
+        .top(120)
+        .font("bold 9px sans-serif")
         .text(function(d) {
           var number = (units[d].max - units[d].min) / 5 * 3 + units[d].min
           if(units[d].name != "Sector")
@@ -157,8 +157,8 @@ rule.anchor("left").add(pv.Label)
         });
 
     rule.anchor("left").add(pv.Label)
-        .top(270)
-        .font("bold 10px sans-serif")
+        .top(180)
+        .font("bold 9px sans-serif")
         .text(function(d) {
           var number = (units[d].max - units[d].min) / 5 * 2 + units[d].min
           if(units[d].name != "Sector")
@@ -166,8 +166,8 @@ rule.anchor("left").add(pv.Label)
         });
 
     rule.anchor("left").add(pv.Label)
-        .top(360)
-        .font("bold 10px sans-serif")
+        .top(240)
+        .font("bold 9px sans-serif")
         .text(function(d) {
           var number = (units[d].max - units[d].min) / 5 * 1 + units[d].min
           if(units[d].name != "Sector")
@@ -175,8 +175,8 @@ rule.anchor("left").add(pv.Label)
         });
 
     rule.anchor("left").add(pv.Label)
-        .top(450)
-        .font("bold 10px sans-serif")
+        .top(300)
+        .font("bold 9px sans-serif")
         .text(function(d) {
           if(units[d].name != "Sector")
             return units[d].min + units[d].unit
