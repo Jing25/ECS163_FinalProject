@@ -1,16 +1,17 @@
-window.onload = main;
+
+mapMain();
 
 var privateAccessToken = 'pk.eyJ1IjoiZGVjbGFueiIsImEiOiJjajNocnN0dTAwMDduMzJyejFlMnptZ3F2In0.aAaFIph2MksCaXfapoAeFQ';
 
-function main(){
-	console.log('Hello from main() at main.js');
+function mapMain(){
+	console.log('Hello from mapMain() at map.js');
 
 	d3.csv("Data/S&P 500 Component Stocks.csv", function(data) {
 		d3.json("Data/S&P 500 Component Stocks Location.json", function(location) {
 			drawCompanyOnMap(data,location);
 		})
 	})
-	console.log('End main.js');
+	console.log('End mapMain.js');
 }
 
 function drawCompanyOnMap(company,location) {
@@ -40,12 +41,16 @@ function drawCompanyOnMap(company,location) {
 		locMarkerList.forEach( (marker,i) => {
 			
 			markerCluster.addLayer(marker);
-
-			marker.bindPopup(`<b>${company[i].Security}</b>`);
+			//${company[i].Security} is for full name
+			marker.bindPopup(`<div class="stockdiv" id="${company[i]["Ticker symbol"]}-stockdiv"></div>`,{maxWidth:600,closeOnClick:false});
 		});
-
 		map.addLayer(markerCluster);
 	}
+
+	map.on('popupopen', (object) =>{
+		var symb = object.popup._content.split('"')[3].split('-')[0];
+		drawStockChart(symb);
+	});
 
 	getMarkerCluster(combinedData);
 	//comBySector.forEach( sector => { if ( sector.key == selction ) getMarkerCluster(sector.values); } );

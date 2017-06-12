@@ -5,29 +5,28 @@ var chart = AmCharts.makeChart("weightdiv", {
     "legend": {
         "useGraphSettings": true
     },
-
-		"dataLoader": {
-			"url": "Data/sectorweight.csv",
-			"format": "csv",
-			"showCurtain": true,
-			"showErrors": true,
-			"async": true,
-			"reverse": true,
-			"delimiter": ",",
-			"useColumnNames": true,
-			//"skip": 1,
-			 "postProcess": function(data) {
-				 data.forEach( function(d) {
-					 Object.keys(d).forEach( function(k) {
-						 if (k != "year") {
-							 d[k] = (Number(d[k])*100).toPrecision(4);
-						 }
-					 })
-				 })
-				 console.log("data: ", data);
-				 return data;
-			 }
-		},
+    "dataLoader": {
+    	"url": "Data/sectorweight.csv",
+    	"format": "csv",
+    	"showCurtain": true,
+    	"showErrors": true,
+    	"async": true,
+    	"reverse": true,
+    	"delimiter": ",",
+    	"useColumnNames": true,
+    	//"skip": 1,
+    	 "postProcess": function(data) {
+    		 data.forEach( function(d) {
+    			 Object.keys(d).forEach( function(k) {
+    				 if (k != "year") {
+    					 d[k] = (Number(d[k])*100).toPrecision(4);
+    				 }
+    			 })
+    		 })
+    		 console.log("data: ", data);
+    		 return data;
+    	 }
+    },
 
     "valueAxes": [{
         "integersOnly": true,

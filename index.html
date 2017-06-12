@@ -25,61 +25,51 @@
 	<script type="text/javascript" src="scripts/protovis-r3.2.js"></script>
 	<script type="text/javascript" src="scripts/ParallelCoordinates_data.js"></script>
 
+	<script type="text/javascript" src="scripts/dat.gui.js"></script>
 </head>
 
 <body>
-<header>
-	<aside>May 12, 2017</aside>
-	ECS 163 Final Project
-</header>
 
-<h2>S and P 500 Companies anaylsis</h2>
+	<h2>S and P 500 Companies anaylsis</h2>
 
-<div class="row">
-	<div class="col-sm-12">
-		<!-- Parallel coordinates -->
-		<div class="clart-titile"> Parallel coordinates </div>
-		<div id="vis1">
-			<script src="scripts/parallelCoordinate.js"></script>
+	<div id="SearchPanel"></div>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<!-- Parallel coordinates -->
+			<div class="clart-titile"> Parallel coordinates </div>
+			<div id="vis1">
+				<script src="scripts/parallelCoordinate.js"></script>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="col-sm-12">
-		 <!-- stock price -->
-		<div class="clart-titile">
-			Stock Price
+
+	<div class="row">
+		<div class="col-sm-12">
+			<!-- Map -->
+			<div class="clart-titile">
+				Map Graph
+			</div>
+			<div id="map"></div>
 		</div>
-		<div id="stockdiv"></div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="col-sm-12">
-		<!-- Map -->
-		<div class="clart-titile">
-			Map Graph
+	<div class="row">
+		<div class="col-sm-12">
+			<!-- Sector Weight -->
+			<div class="clart-titile">
+				Sector Weighting Graph
+			</div>
+			<div id="weightdiv"></div>
 		</div>
-		<div id="map"></div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="col-sm-12">
-		<!-- Sector Weight -->
-		<div class="clart-titile">
-			Sector Weighting Graph
-		</div>
-		<div id="weightdiv"></div>
-	</div>
-</div>
-<div id="floatingSearch"></div>
 
-</body>
+	</body>
 
-<script src="scripts/stockChart.js"></script>
-<script src="scripts/map.js"></script>
-<script src="scripts/sectorWeight.js"></script>
-
+	<script src="scripts/stockChart.js"></script>>
+	<script src="scripts/map.js"></script>
+	<script src="scripts/gui.js"></script>
+	<script src="scripts/sectorWeight.js"></script>
 </html>
