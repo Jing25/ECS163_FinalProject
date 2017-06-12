@@ -17,7 +17,7 @@ function mapMain(){
 function drawCompanyOnMap(company,location) {
 	// debugger;
 	//map function
-	var map = L.map('map').setView([33.929648, -43.942662], 3);
+	var map = L.map('map',{scrollWheelZoom:false,}).setView([33.929648, -43.942662], 3);
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -28,6 +28,16 @@ function drawCompanyOnMap(company,location) {
 
 	var combinedData = company.map((d,i)=>{ d.GeoCode = location[i]; return d});
 	var comBySector = d3.nest().key(d=>d["GICS Sector"]).entries(combinedData);
+
+	map.on('popupopen', (object) =>{
+		// debugger;
+		var companyInfos = object.popup._content.split('"')[3].split('-');
+		var symb = companyInfos[0];
+		var fullCompanyName = companyInfos[1];
+		drawStockChart(symb,fullCompanyName);
+	});
+
+	getMarkerCluster(combinedData);
 
 	function getMarkerCluster(list) {
 		var locMarkerList = list.map(loc => L.marker(loc.GeoCode.features[0].geometry.coordinates.reverse()));
@@ -41,18 +51,19 @@ function drawCompanyOnMap(company,location) {
 		locMarkerList.forEach( (marker,i) => {
 			
 			markerCluster.addLayer(marker);
-			//${company[i].Security} is for full name
-			marker.bindPopup(`<div class="stockdiv" id="${company[i]["Ticker symbol"]}-stockdiv"></div>`,{maxWidth:600,closeOnClick:false});
+			// is for full name
+			marker.bindPopup(`<div class="stockdiv" id="${company[i]["Ticker symbol"]}-${company[i].Security}-stockdiv"></div>`,
+				{ maxWidth:600,
+				});
+			marker.bindTooltip(`${company[i].Security}`);
+
+			marker.on('mouseover', function (e) {this.openTooltip();});
+
 		});
 		map.addLayer(markerCluster);
 	}
 
-	map.on('popupopen', (object) =>{
-		var symb = object.popup._content.split('"')[3].split('-')[0];
-		drawStockChart(symb);
-	});
 
-	getMarkerCluster(combinedData);
 	//comBySector.forEach( sector => { if ( sector.key == selction ) getMarkerCluster(sector.values); } );
 
 	// var data = d3.select('#map').append('div');

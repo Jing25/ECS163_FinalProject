@@ -1,6 +1,7 @@
 
-function drawStockChart(symb,divID){
-  var divID = symb+"-stockdiv";
+function drawStockChart(symb,title){
+  // debugger;
+  var divID = `${symb}-${title}-stockdiv`;
   var fileName = "Data_Company_CandleStick/" + symb + ".json";
   var chart = AmCharts.makeChart(divID, {
     "type": "stock",
@@ -8,7 +9,7 @@ function drawStockChart(symb,divID){
 
     //"color": "#fff",
     "dataSets": [ {
-      "title": symb,
+      "title": title,
       "fieldMappings": [ {
         "fromField": "Open",
         "toField": "open"
@@ -40,7 +41,7 @@ function drawStockChart(symb,divID){
         "reverse": true,
         "useColumnNames": true,
          "postProcess": function(data) {
-           console.log("data: ", data.values);
+           // console.log("data: ", data.values);
            return data.values;
          }
       }
@@ -48,7 +49,7 @@ function drawStockChart(symb,divID){
     "dataDateFormat": "YYYY-MM-DD",
 
     "panels": [ {
-        "title": "Value",
+        "title": "Company",
         "percentHeight": 70,
 
         "stockGraphs": [ {

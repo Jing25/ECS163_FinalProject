@@ -1,75 +1,285 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<html>
-<head>
-	<title>ESC163 Final Project</title>
-	<script src="scripts/d3.v4.min.js"></script>
 
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
-	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
 
-	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.5/dist/MarkerCluster.Default.css"/>
-	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.5/dist/MarkerCluster.css"/>
-	<script src="https://unpkg.com/leaflet.markercluster@1.0.5/dist/leaflet.markercluster.js"></script>
+      <!-- OwnCode Section -->
+      <title>ESC163 Final Project</title>
+      <script src="scripts/d3.v4.min.js"></script>
 
-	<script src="scripts/amcharts.js"></script>
-	<script src="scripts/serial.js"></script>
-	<script src="scripts/amstock.js"></script>
-	<script src="scripts/light.js"></script>
-	<script src="scripts/dataloader.min.js"></script>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
 
-	<link rel="stylesheet" href="styles/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="styles/style.css">
-	<link rel="stylesheet" href="styles/mystyle.css"/>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.5/dist/MarkerCluster.Default.css"/>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.5/dist/MarkerCluster.css"/>
+      <script src="https://unpkg.com/leaflet.markercluster@1.0.5/dist/leaflet.markercluster.js"></script>
 
-	<script type="text/javascript" src="scripts/protovis-r3.2.js"></script>
-	<script type="text/javascript" src="scripts/ParallelCoordinates_data.js"></script>
-
-	<script type="text/javascript" src="scripts/dat.gui.js"></script>
-</head>
-
-<body>
-
-	<h2>S and P 500 Companies anaylsis</h2>
-
-	<div id="SearchPanel"></div>
-
-	<div class="row">
-		<div class="col-sm-12">
-			<!-- Parallel coordinates -->
-			<div class="clart-titile"> Parallel coordinates </div>
-			<div id="vis1">
-				<script src="scripts/parallelCoordinate.js"></script>
-			</div>
-		</div>
-	</div>
+      <script src="scripts/amcharts.js"></script>
+      <script src="scripts/serial.js"></script>
+      <script src="scripts/amstock.js"></script>
+      <script src="scripts/light.js"></script>
+      <script src="scripts/dataloader.min.js"></script>
 
 
-	<div class="row">
-		<div class="col-sm-12">
-			<!-- Map -->
-			<div class="clart-titile">
-				Map Graph
-			</div>
-			<div id="map"></div>
-		</div>
-	</div>
+      <script type="text/javascript" src="scripts/dat.gui.js"></script>
+      <link rel="stylesheet" href="styles/gui.css"/>
 
-	<div class="row">
-		<div class="col-sm-12">
-			<!-- Sector Weight -->
-			<div class="clart-titile">
-				Sector Weighting Graph
-			</div>
-			<div id="weightdiv"></div>
-		</div>
-	</div>
+      <link rel="stylesheet" href="styles/mystyle.css"/>
+
+      <script type="text/javascript" src="scripts/protovis-r3.2.js"></script>
+      <script type="text/javascript" src="scripts/ParallelCoordinates_data.js"></script>
+
+      <!-- OwnCode Section END -->
+
+      <!-- Favicon ================== -->
+      <!-- Standard -->
+      <link rel="shortcut icon" href="img/favicon-144.png">
+      <!-- Retina iPad Touch Icon-->
+      <link rel="apple-touch-icon" sizes="144x144" href="img/favicon-144.png">
+      <!-- Retina iPhone Touch Icon-->
+      <link rel="apple-touch-icon" sizes="114x114" href="img/favicon-114.png">
+      <!-- Standard iPad Touch Icon-->
+      <link rel="apple-touch-icon" sizes="72x72" href="img/favicon-72.png">
+      <!-- Standard iPhone Touch Icon-->
+      <link rel="apple-touch-icon" sizes="57x57" href="img/favicon-57.png">
+
+      <!--  Resources style ================== -->
+      <link href="css/theme-MariBlue.css" rel="stylesheet" type="text/css" media="all"/>
+    </head>
+    <body>
+      <section class="animsition">
+
+        <div id="leftSide">
+
+          <div id="home" class="">
+            <!-- Your logo -->
+  			    <img src="img/logo.png" alt="" class="main-logo" />
+
+            <div class="h-content">
+              <h1>S&P 500 Companies anaylsis</h1>
+              <h2>Hello Guys!<br> Data Prediction is Comming SOOON...</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua dolor sit amet.</p>
+            </div>
+
+            <ul class="social_icons">
+              <li><a href="#"><i class="icon ion-social-facebook"></i></a></li>
+              <li><a href="#"><i class="icon ion-social-twitter"></i></a></li>
+              <li><a href="#"><i class="icon ion-social-instagram"></i></a></li>
+              <li><a href="#"><i class="icon ion-social-linkedin"></i></a></li>
+              <li><a href="#"><i class="icon ion-social-youtube"></i></a></li>
+            </ul>
+
+            <div id="particles-js" class="gradient"></div>
+            <div class="count-particles">
+              <span class="js-count-particles"></span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div id="rightSide">
+
+          <div class="project" >
+            <ul class="gallery project_navigation" id="customProject">
+
+              <li class="item col-sm-12 col-xs-12">
+                <div id="vis1">
+                  <script src="scripts/parallelCoordinate.js"></script>
+                </div>                         
+                <figcaption class="caption">
+                  <div class="photo-details">
+                    <h4>Sector</h4>
+                    <span>For Value Estimation</span>
+                  </div>
+                  <a href="#SectorSanky" class="view">VIEW</a>
+                </figcaption>
+              </li>
+                <li class="item col-sm-9 col-xs-9">
+                    <div id="map"></div>
+                </li>
+
+                <li class="item col-sm-3 col-xs-3" id="samerow">
+                    <div id="SearchPanel"><div id="SearchPanelContent"></div></div>
+                    <figcaption class="caption">
+                      <div class="photo-details">
+                        <h4>Sector</h4>
+                        <span>By Weight</span>
+                      </div>
+                      <a href="#SectorWeight" class="view">VIEW</a>
+                    </figcaption>
+                </li>
+
+            </ul>
+
+            <ul class="project_info">
+              <li id="SectorWeight">
+                <div class="project_content">
+                  <div id="weightdiv"></div>
+                </div>
+              </li>
+              <li id="SectorSanky">
+                <div class="project_content">
+                  <div id="weightdiv"></div>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+
+<!--      <div id="subscribe">
+            <h2>Stay tunned we're coming this year</h2>
+            <div class="mb100" id="clock" data-date="2016/08/02 12:00:00"></div>
+
+            <form
+            id="subscribe-form"
+            action="http://coderare.us12.list-manage.com/subscribe/post-json?u=112a29375b248b89f47be54b7&amp;id=e46717ab68"
+            method="get">
+              <input type="email" name="EMAIL" class="input-email" value="" placeholder="Email address *">
+              <input type="submit" name="subscribe" class="submit input-submit" value="Subscribe">
+              <div id="subscribe-result"></div>
+            </form>
+          </div> -->
 
 
-	</body>
+<!--           <div class="about">
+            <h2>Get started fast with one of our unique, pre-built concepts.</h2>
+            <p>
+              Customers love our block-based approach to template building,
+              it makes assembling beautiful pages fast and enjoyable, leaving
+               more time to craft your perfect layout. love our block-based
+              approach to template building, it makes assembling beautiful pages
+              fast and enjoyable, leaving more time to craft your perfect layout.
+            </p>
 
-	<script src="scripts/stockChart.js"></script>>
-	<script src="scripts/map.js"></script>
-	<script src="scripts/gui.js"></script>
-	<script src="scripts/sectorWeight.js"></script>
+            <p>
+              Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit.
+            </p>
+
+            <div class="service row">
+              <div class="feature col-sm-3 col-xs-3">
+                <i class="ion-heart"></i>
+                <h6>SIMPLE</h6>
+              </div>
+
+              <div class="feature col-sm-3 col-xs-3">
+                <i class="ion-erlenmeyer-flask"></i>
+                <h6>CREATIVE</h6>
+              </div>
+
+              <div class="feature col-sm-3 col-xs-3">
+                <i class="ion-waterdrop"></i>
+                <h6>SMOOTH</h6>
+              </div>
+
+              <div class="feature col-sm-3 col-xs-3">
+                <i class="ion-code"></i>
+                <h6>STABLE</h6>
+              </div>
+            </div>
+          </div>
+ -->
+<!--           <div class="pricing">
+            <div class="row">
+              <div class="offers col-sm-8 col-xs-8">
+                <ul class="col-sm-6 col-xs-6">
+                  <li>Hosting</li>
+                  <li>Web Security</li>
+                  <li>Domain</li>
+                </ul>
+
+                <ul class="col-sm-6 col-xs-6">
+                  <li>24/7 Support</li>
+                  <li>Email Hosting</li>
+                  <li>Premium DNS</li>
+                </ul>
+              </div>
+
+              <div class="price col-sm-4 col-xs-4">
+                <h5 class="rate">29</h5>
+                <p><strong>Per Month</strong></p>
+              </div>
+            </div>
+          </div>
+ -->
+<!--           <div id="contact" class="row">
+              <h2>Get in <strong>touch</strong>, we'd love to hear from you.</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+
+              <address class="row">
+                <span class="col-sm-6 col-xs-12">
+                  <i class="ion-location"></i>
+                  1355 Market Street, Suite 900
+                  San Francisco, CA 94103
+                </span>
+                <span class="col-sm-6 col-xs-12">
+                  <i class="ion-ios-telephone"></i>
+                  (123) 456-7890
+                </span>
+                <span class="col-sm-6 col-xs-12">
+                  <i class="ion-email"></i>
+                  hello@Code Rarecom
+                </span>
+              </address>
+
+              <form id="contact_form" class="row" method="post" action="php/mailer.php">
+                <div class="col-sm-6 col-xs-12">
+                  <input type="name" name="name" class="input-name" placeholder="Name">
+                  <input type="email" name="email" class="input-email" placeholder="Email">
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                  <textarea name="message" class="input-message" placeholder="Message"></textarea>
+                </div>
+
+                <div class="col-sm-12 col-xs-12">
+                  <button class="submit">Send</button>
+                </div>
+
+                <div id="form-messages" class="col-sm-12 col-xs-12">
+                  <span class="success col-sm-12 col-xs-12"></span>
+                  <span class="error col-sm-12 col-xs-12"></span>
+                </div>
+              </form>
+          </div>
+ -->
+          <footer>
+            <p class="uppercase">© UC Davis - Made With Love <i class="ion-heart"></i> By Dequan,Jing,Lydia</p>
+            <div class="drag">
+              <i class="up ion-arrow-up-c"></i>
+            </div>
+          </footer>
+
+        </div>
+      </section>
+
+      <script src="js/jquery-1.11.3.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/animsition.min.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+      <script src="js/jquery.magnific-popup.min.js"></script>
+      <script src="js/jquery.countdown.min.js"></script>
+      <script src="js/twitterFetcher_min.js"></script>
+      <script src="js/masonry.pkgd.min.js"></script>
+      <script src="js/imagesloaded.pkgd.min.js"></script>
+      <script src="js/jquery.flexslider-min.js"></script>
+      <script src="js/photoswipe.min.js"></script>
+      <script src="js/photoswipe-ui-default.min.js"></script>
+      <script src="js/jqinstapics.min.js"></script>
+      <script src="js/particles.min.js"></script>
+      <script type="text/javascript">
+        particlesJS("particles-js", {"particles":{"number":{"value":67,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"triangle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":12,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"repulse"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function() { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;
+      </script>
+      <script src="js/script.js"></script>
+
+      <!-- OWN SCRIPT -->
+      <script src="scripts/stockChart.js"></script>>
+      <script src="scripts/map.js"></script>
+      <script src="scripts/gui.js"></script>
+      <script src="scripts/sectorWeight.js"></script>
+
+      <!-- OWN SCRIPT END -->
+
+  </body>
 </html>
