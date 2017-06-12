@@ -22,6 +22,27 @@ position: relative;
 background: white;
 }
 
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}
+
 .stockdiv {
 	width:  525px;
   height: 310px;
@@ -31,7 +52,6 @@ background: white;
 	width: 205px;
   height: 390px;
 }
-
 #samerow {
   position: absolute; 
   left: 670px !important; 

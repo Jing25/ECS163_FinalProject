@@ -115,7 +115,7 @@ function drawStockChart(symb,title){
     ],
 
     "panelsSettings": {
-      //    "color": "#fff",
+      "color": "#fff",
       "plotAreaFillColors": "#333",
       "plotAreaFillAlphas": 1,
       "marginLeft": 60,
@@ -152,16 +152,12 @@ function drawStockChart(symb,title){
     "chartCursorSettings": {
       "pan": true,
       "valueLineEnabled": true,
-      "valueLineBalloonEnabled": true
+      "color": "#fff",
+      //"valueLineBalloonEnabled": true
     },
 
     "legendSettings": {
       //"color": "#fff"
-    },
-
-    "stockEventsSettings": {
-      "showAt": "high",
-      "type": "pin"
     },
 
     "balloon": {
@@ -193,16 +189,11 @@ function drawStockChart(symb,title){
           "selected": true,
           "label": "2Y"
         },
-        /* {
-             "period": "YTD",
-             "label": "YTD"
-           },*/
         {
           "period": "MAX",
           "label": "MAX"
         }
       ]
     }
-  } );  
+  } );
 }
-
