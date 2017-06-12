@@ -25,7 +25,6 @@
 
 
       <script type="text/javascript" src="scripts/dat.gui.js"></script>
-      <link rel="stylesheet" href="styles/gui.css"/>
 
       <link rel="stylesheet" href="styles/mystyle.css"/>
 
@@ -84,9 +83,9 @@
         <div id="rightSide">
 
           <div class="project" >
-            <ul class="gallery project_navigation" id="customProject">
+            <div class="gallery project_navigation" id="customProject">
 
-              <li class="item col-sm-12 col-xs-12">
+              <div class="item col-sm-12 col-xs-12">
                 <div id="vis1">
                   <script src="scripts/parallelCoordinate.js"></script>
                 </div>                         
@@ -97,23 +96,24 @@
                   </div>
                   <a href="#SectorSanky" class="view">VIEW</a>
                 </figcaption>
-              </li>
-                <li class="item col-sm-9 col-xs-9">
-                    <div id="map"></div>
-                </li>
+              </div>
 
-                <li class="item col-sm-3 col-xs-3" id="samerow">
-                    <div id="SearchPanel"><div id="SearchPanelContent"></div></div>
-                    <figcaption class="caption">
-                      <div class="photo-details">
-                        <h4>Sector</h4>
-                        <span>By Weight</span>
-                      </div>
-                      <a href="#SectorWeight" class="view">VIEW</a>
-                    </figcaption>
-                </li>
+              <div class="item col-sm-9 col-xs-9">
+                  <div id="map"></div>
+              </div>
 
-            </ul>
+              <div class="item col-sm-3 col-xs-3" id="samerow">
+                  <div id="SearchPanel"><div id="SearchPanelContent"></div></div>
+                  <figcaption class="caption">
+                    <div class="photo-details">
+                      <h4>Sector</h4>
+                      <span>By Weight</span>
+                    </div>
+                    <a href="#SectorWeight" class="view">VIEW</a>
+                  </figcaption>
+              </div>
+
+            </div>
 
             <ul class="project_info">
               <li id="SectorWeight">
@@ -280,6 +280,7 @@
       <script src="scripts/map.js"></script>
       <script src="scripts/gui.js"></script>
       <script src="scripts/sectorWeight.js"></script>
+      <script src="scripts/arr-stat.js"></script>
       <script src="scripts/mySankey.js"></script>
 
       <!-- OWN SCRIPT END -->

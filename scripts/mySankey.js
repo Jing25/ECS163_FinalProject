@@ -9,7 +9,7 @@ var units = "Companies";
 
 // set the dimensions and margins of the graph
 var margin_sk = {top: 10, right: 10, bottom: 10, left: 10},
-    width_sk = 700 - margin_sk.left - margin_sk.right,
+    width_sk = 500 - margin_sk.left - margin_sk.right,
     height_sk = 300 - margin_sk.top - margin_sk.bottom;
 
 // format variables
