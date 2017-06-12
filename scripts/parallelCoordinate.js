@@ -8,9 +8,9 @@ var units = {
   ebi: {name: "EBITDA", unit: " USD", max: 71, min: -2},
   prs: {name: "Price/Sales", unit: " USD", max: 25, min: -1}
 }
-
-var list = ["Industrials", "Health Care", "Information Technology",
-"Consumer Discretionary", "Utilities", "Financials", "Materials",
+   
+var list = ["Industrials", "Health Care", "Information Technology", 
+"Consumer Discretionary", "Utilities", "Financials", "Materials", 
 "Consumer Staples", "Real Estate", "Energy", "Telecommunications Services"];
 
 var sym = [];
