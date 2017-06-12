@@ -17,7 +17,7 @@
 #vis1{
 border:1px dotted black;
 width: 800px; 
-height: 328px;
+height: 340px;
 position: relative;
 background: white;
 }
@@ -55,7 +55,7 @@ background: white;
 #samerow {
   position: absolute; 
   left: 670px !important; 
-  top: 343px !important;
+  top: 355px !important;
 }
 #customProject {
   height: 750px !important;
