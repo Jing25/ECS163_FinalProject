@@ -11,7 +11,7 @@ var units = {
    
 var list = ["Industrials", "Health Care", "Information Technology", 
 "Consumer Discretionary", "Utilities", "Financials", "Materials", 
-"Consumer Staples", "Real Estate", "Energy", "Telecommunications Services"];
+"Consumer Staples", "Real Estate", "Energy", "Communication Services"];
 
 var sym = [];
 
@@ -76,8 +76,8 @@ function csvJSON(csv){
 
 
     /* Sizing and scales. */
-    var w = 820,
-        h = 450,
+    var w = 650,
+        h = 300,
         fudge = 0.5,
         x = pv.Scale.ordinal(dims).splitFlush(0, w),
         y = pv.dict(dims, function(t) pv.Scale.linear(
@@ -97,7 +97,7 @@ function csvJSON(csv){
     var vis = new pv.Panel()
         .width(w)
         .height(h)
-        .left(170)
+        .left(120)
         .right(30)
         .top(30)
         .bottom(20);
@@ -139,8 +139,8 @@ rule.anchor("left").add(pv.Label)
         });
 
 rule.anchor("left").add(pv.Label)
-        .top(90)
-        .font("bold 10px sans-serif")
+        .top(60)
+        .font("bold 9px sans-serif")
         .text(function(d) {
           var number = (units[d].max - units[d].min) / 5 * 4 + units[d].min
           if(units[d].name != "Sector")
@@ -148,8 +148,8 @@ rule.anchor("left").add(pv.Label)
         });
 
     rule.anchor("left").add(pv.Label)
-        .top(180)
-        .font("bold 10px sans-serif")
+        .top(120)
+        .font("bold 9px sans-serif")
         .text(function(d) {
           var number = (units[d].max - units[d].min) / 5 * 3 + units[d].min
           if(units[d].name != "Sector")
@@ -157,8 +157,8 @@ rule.anchor("left").add(pv.Label)
         });
 
     rule.anchor("left").add(pv.Label)
-        .top(270)
-        .font("bold 10px sans-serif")
+        .top(180)
+        .font("bold 9px sans-serif")
         .text(function(d) {
           var number = (units[d].max - units[d].min) / 5 * 2 + units[d].min
           if(units[d].name != "Sector")
@@ -166,8 +166,8 @@ rule.anchor("left").add(pv.Label)
         });
 
     rule.anchor("left").add(pv.Label)
-        .top(360)
-        .font("bold 10px sans-serif")
+        .top(240)
+        .font("bold 9px sans-serif")
         .text(function(d) {
           var number = (units[d].max - units[d].min) / 5 * 1 + units[d].min
           if(units[d].name != "Sector")
@@ -175,8 +175,8 @@ rule.anchor("left").add(pv.Label)
         });
 
     rule.anchor("left").add(pv.Label)
-        .top(450)
-        .font("bold 10px sans-serif")
+        .top(300)
+        .font("bold 9px sans-serif")
         .text(function(d) {
           if(units[d].name != "Sector")
             return units[d].min + units[d].unit
@@ -185,13 +185,13 @@ rule.anchor("left").add(pv.Label)
     // Add label for sector's name
     vis.add(pv.Rule)
         .data(pv.range(11))
-        .bottom(function(d) d / 2 * 82 + 22)
+        .bottom(function(d) d / 2 * 55 + 15)
         .left(-5)
         .strokeStyle("white")
       .add(pv.Label)
         .textAlign("right")
         .textBaseline("middle")
-        .font("bold 10px sans-serif")
+        .font("bold 9px sans-serif")
         .textStyle(pv.colors("#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#6b4900"))
         .text(function(d) list[d]);
 
