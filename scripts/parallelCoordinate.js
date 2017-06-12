@@ -8,10 +8,12 @@ var units = {
   ebi: {name: "EBITDA", unit: " USD", max: 71, min: -2},
   prs: {name: "Price/Sales", unit: " USD", max: 25, min: -1}
 }
-    
-var list = ["Industrials", "Health Care", "Information Technology", 
-"Consumer Discretionary", "Utilities", "Financials", "Materials", 
+
+var list = ["Industrials", "Health Care", "Information Technology",
+"Consumer Discretionary", "Utilities", "Financials", "Materials",
 "Consumer Staples", "Real Estate", "Energy", "Telecommunications Services"];
+
+var sym = [];
 
 function getSectorColor(c) {
     switch (c) {
@@ -29,7 +31,7 @@ function getSectorColor(c) {
           break;
       case 5:
           return "#fb9a99"
-          break;              
+          break;
         case 6:
           return "#e31a1c"
           break;
@@ -84,7 +86,7 @@ function csvJSON(csv){
             function(d) Math.ceil(d[t]) +fudge
             ).range(0, h));
         c = pv.dict(dims, function(c) getSectorColor);
-                  
+
 
     /* Interaction state. */
     var filter = pv.dict(dims, function(t) {
@@ -123,7 +125,7 @@ function csvJSON(csv){
         .top(-15)
         .font("bold 10px sans-serif")
         .text(function(d) units[d].name);
-    
+
     // for(i = 0; i < 4; i++) {
 
 
@@ -143,8 +145,8 @@ rule.anchor("left").add(pv.Label)
           var number = (units[d].max - units[d].min) / 5 * 4 + units[d].min
           if(units[d].name != "Sector")
             return number.toFixed(0) + units[d].unit
-        }); 
-    
+        });
+
     rule.anchor("left").add(pv.Label)
         .top(180)
         .font("bold 10px sans-serif")
@@ -152,8 +154,8 @@ rule.anchor("left").add(pv.Label)
           var number = (units[d].max - units[d].min) / 5 * 3 + units[d].min
           if(units[d].name != "Sector")
             return number.toFixed(0) + units[d].unit
-        }); 
-    
+        });
+
     rule.anchor("left").add(pv.Label)
         .top(270)
         .font("bold 10px sans-serif")
@@ -161,8 +163,8 @@ rule.anchor("left").add(pv.Label)
           var number = (units[d].max - units[d].min) / 5 * 2 + units[d].min
           if(units[d].name != "Sector")
             return number.toFixed(0) + units[d].unit
-        }); 
-    
+        });
+
     rule.anchor("left").add(pv.Label)
         .top(360)
         .font("bold 10px sans-serif")
@@ -170,17 +172,17 @@ rule.anchor("left").add(pv.Label)
           var number = (units[d].max - units[d].min) / 5 * 1 + units[d].min
           if(units[d].name != "Sector")
             return number.toFixed(0) + units[d].unit
-        }); 
-        
+        });
+
     rule.anchor("left").add(pv.Label)
         .top(450)
         .font("bold 10px sans-serif")
         .text(function(d) {
           if(units[d].name != "Sector")
             return units[d].min + units[d].unit
-        });                         
+        });
 
-    // Add label for sector's name   
+    // Add label for sector's name
     vis.add(pv.Rule)
         .data(pv.range(11))
         .bottom(function(d) d / 2 * 82 + 22)
@@ -191,8 +193,8 @@ rule.anchor("left").add(pv.Label)
         .textBaseline("middle")
         .font("bold 10px sans-serif")
         .textStyle(pv.colors("#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#6b4900"))
-        .text(function(d) list[d]); 
-              
+        .text(function(d) list[d]);
+
 
 
     // The parallel coordinates display.
@@ -200,14 +202,22 @@ rule.anchor("left").add(pv.Label)
 
     var line = change.add(pv.Panel)
         .data(pc)
-        .visible(function(d) dims.every(function(t)
-            (d[t] >= filter[t].min) && (d[t] <= filter[t].max)))
+        .visible(function(d) dims.every(function(t) {
+        	if (sym.length != 0) {
+        		return (d[t] >= filter[t].min) && (d[t] <= filter[t].max)
+        				&& (sym.filter(s => s == d.Symbol).length != 0 )
+        	}
+        	else {
+        		return (d[t] >= filter[t].min) && (d[t] <= filter[t].max)
+        	}
+
+        }))
       .add(pv.Line)
         .data(dims)
         .left(function(t, d) x(t))
         .bottom(function(t, d) y[t](d[t]))
-        .strokeStyle(function(t,d) { return c[active](d[active]);  }).lineWidth(1);
-        
+        .strokeStyle(function(t,d) { return c[active](d[active]);  }).lineWidth(1.2);
+
     // Updater for slider and resizer.
     function update(d) {
       var t = d.dim;
@@ -259,27 +269,10 @@ rule.anchor("left").add(pv.Label)
 
 var sectors_min = [];
 var sectors_max = [];
-    // Label on Selection : Start
-    // 
-    // handle.anchor("bottom").add(pv.Label)
-    //   .textMargin(6)
-    //     .textBaseline("top")
-    //     .text(function(d) {
-    //       sectors_min = [filter[d.dim].min.toFixed(0)]
-    //       return (filter[d.dim].min.toFixed(0) + units[d.dim].unit)
-    //     });   
-  
-    // handle.anchor("top").add(pv.Label)
-    //   .textMargin(6)
-    //     .textBaseline("bottom")
-    //     .text( function(d) {
-    //       sectors_max = [filter[d.dim].max.toFixed(0)];
-    //       return filter[d.dim].max.toFixed(0) + units[d.dim].unit;
-    //     });
-    // Label on Selection : END
+
 
     function myPC_update() {
-    
+
       if(document.getElementById("max1").value != 'Keep Same') {
         var t = "sec";
           filter[t].min = Math.max(y[t].domain()[0], y[t].invert((document.getElementById("min1").value) * 37.5 - 18.75));
@@ -289,7 +282,7 @@ var sectors_max = [];
           active = "sec";
           change.render();
     }
-    
+
     if(document.getElementById("max2").value != 'Keep Same') {
         var t = "mac";
           filter[t].min = Math.max(y[t].domain()[0], y[t].invert((document.getElementById("min2").value) * 0.6122 - 0.3061 - 1));
@@ -298,10 +291,8 @@ var sectors_max = [];
           change.render();
           active = "sec";
           change.render();
-//          document.getElementById("max1").value = 'Keep Same';
-//          document.getElementById("min1").value = 'Keep Same';
     }
-    
+
     if(document.getElementById("max3").value != 'Keep Same') {
         var t = "pri";
           filter[t].min = Math.max(y[t].domain()[0], y[t].invert((document.getElementById("min3").value) * 0.2586 - 0.1293 - 1));
@@ -313,7 +304,7 @@ var sectors_max = [];
 //          document.getElementById("max1").value = 'Keep Same';
 //          document.getElementById("min1").value = 'Keep Same';
     }
-    
+
     if(document.getElementById("max4").value != 'Keep Same') {
         var t = "bov";
           filter[t].min = Math.max(y[t].domain()[0], y[t].invert((document.getElementById("min4").value) * 1.6014 - 0.8007));
@@ -325,7 +316,7 @@ var sectors_max = [];
 //          document.getElementById("max1").value = 'Keep Same';
 //          document.getElementById("min1").value = 'Keep Same';
     }
-    
+
     if(document.getElementById("max5").value != 'Keep Same') {
         var t = "eas";
           filter[t].min = Math.max(y[t].domain()[0], y[t].invert((document.getElementById("min5").value) * 5.1724 - 2.5862 - 35));
@@ -337,7 +328,7 @@ var sectors_max = [];
 //          document.getElementById("max1").value = 'Keep Same';
 //          document.getElementById("min1").value = 'Keep Same';
     }
-    
+
     if(document.getElementById("max6").value != 'Keep Same') {
         var t = "ebi";
           filter[t].min = Math.max(y[t].domain()[0], y[t].invert((document.getElementById("min6").value) * 6.0811 - 3.0405 - 2));
@@ -349,7 +340,7 @@ var sectors_max = [];
 //          document.getElementById("max1").value = 'Keep Same';
 //          document.getElementById("min1").value = 'Keep Same';
     }
-    
+
     if(document.getElementById("max7").value != 'Keep Same') {
         var t = "prs";
           filter[t].min = Math.max(y[t].domain()[0], y[t].invert((document.getElementById("min7").value) * 16.6667 - 8.3333 - 1));
@@ -362,18 +353,8 @@ var sectors_max = [];
 //          document.getElementById("min1").value = 'Keep Same';
     }
 
-//      if(document.getElementById("max1").value != 'Keep Same') {
-//        fuction(d); {
-//          d.dim = "sec";
-//          d.y = h - (document.getElementById("max1").value * 37.5 + 18.75);
-//          d.dy = h - d.y - (document.getElementById("min1").value * 37.5 - 18.75);
-//          return false;
-//        } 
-//            update(d);
-// //           document.getElementById("max1").value = 'Keep Same';
-// //           document.getElementById("min1").value = 'Keep Same';
-//        }
+
     return false;
-}    
+}
 
 vis.render();

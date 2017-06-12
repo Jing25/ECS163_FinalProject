@@ -1,6 +1,6 @@
 
 var symb = "AAPL";
-var fileName = "Company_CandleStick/" + symb + ".json";
+var fileName = "Data_Company_CandleStick/" + symb + ".json";
 
 var chart = AmCharts.makeChart( "stockdiv", {
   "type": "stock",

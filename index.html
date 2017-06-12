@@ -4,26 +4,33 @@
 <head>
 	<title>ESC163 Final Project</title>
 	<script src="scripts/d3.v4.min.js"></script>
+	<script src="scripts/arr-stat.js"></script>
 
+	<!-- map -->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
-
 	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.5/dist/MarkerCluster.Default.css"/>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.5/dist/MarkerCluster.css"/>
 	<script src="https://unpkg.com/leaflet.markercluster@1.0.5/dist/leaflet.markercluster.js"></script>
 
+	<!-- amcharts -->
 	<script src="scripts/amcharts.js"></script>
 	<script src="scripts/serial.js"></script>
 	<script src="scripts/amstock.js"></script>
 	<script src="scripts/light.js"></script>
 	<script src="scripts/dataloader.min.js"></script>
 
+  <!-- parallel coordinates -->
+	<script type="text/javascript" src="scripts/protovis-r3.2.js"></script>
+	<script type="text/javascript" src="scripts/ParallelCoordinates_data.js"></script>
+
+	<!-- sankey -->
+	<script src="scripts/sankey.js"></script>
+
+	<!-- styles -->
 	<link rel="stylesheet" href="styles/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
 	<link rel="stylesheet" href="styles/mystyle.css"/>
-
-	<script type="text/javascript" src="scripts/protovis-r3.2.js"></script>
-	<script type="text/javascript" src="scripts/ParallelCoordinates_data.js"></script>
 
 </head>
 
@@ -42,6 +49,17 @@
 		<div id="vis1">
 			<script src="scripts/parallelCoordinate.js"></script>
 		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		 <!-- stock price -->
+		<div class="clart-titile">
+			Sankey Chart
+		</div>
+		<!-- <a href="#sankeydiv" class="btn btn-info" data-toggle="collapse">Simple collapsible</a> -->
+		<div id="sankeydiv"></div>
 	</div>
 </div>
 
@@ -76,10 +94,12 @@
 </div>
 <div id="floatingSearch"></div>
 
+
 </body>
 
 <script src="scripts/stockChart.js"></script>
 <script src="scripts/map.js"></script>
 <script src="scripts/sectorWeight.js"></script>
+<script src="scripts/mySankey.js"></script>
 
 </html>
