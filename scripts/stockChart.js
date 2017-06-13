@@ -2,6 +2,7 @@
 function drawStockChart(symb,title){
   // debugger;
   var divID = `${symb}-${title}-stockdiv`;
+  console.log(divID);
   var fileName = "Data_Company_CandleStick/" + symb + ".json";
   var chart = AmCharts.makeChart(divID, {
     "type": "stock",
@@ -115,7 +116,7 @@ function drawStockChart(symb,title){
     ],
 
     "panelsSettings": {
-      "color": "#fff",
+      //"color": "#fff",
       "plotAreaFillColors": "#333",
       "plotAreaFillAlphas": 1,
       "marginLeft": 60,
@@ -152,7 +153,7 @@ function drawStockChart(symb,title){
     "chartCursorSettings": {
       "pan": true,
       "valueLineEnabled": true,
-      "color": "#fff",
+      //"color": "#fff",
       //"valueLineBalloonEnabled": true
     },
 
@@ -195,5 +196,5 @@ function drawStockChart(symb,title){
         }
       ]
     }
-  } );
+  });
 }

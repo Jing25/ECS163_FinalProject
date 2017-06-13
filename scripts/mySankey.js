@@ -9,7 +9,7 @@ var units = "Companies";
 
 // set the dimensions and margins of the graph
 var margin_sk = {top: 10, right: 10, bottom: 10, left: 10},
-    width_sk = 500 - margin_sk.left - margin_sk.right,
+    width_sk = 600 - margin_sk.left - margin_sk.right,
     height_sk = 300 - margin_sk.top - margin_sk.bottom;
 
 // format variables
@@ -269,18 +269,19 @@ function drawSankey(graph) {
     .filter(function(d) { return d.x < width_sk / 2; })
       .attr("x", 6 + sankey.nodeWidth())
       .attr("text-anchor", "start");
+
+   // the function for moving the nodes
+      function dragmove(d) {
+        d3.select(this)
+          .attr("transform",
+                "translate("
+                   + d.x + ","
+                   + (d.y = Math.max(
+                      0, Math.min(height_sk - d.dy, d3.event.y))
+                     ) + ")");
+        sankey.relayout();
+        link.attr("d", path);
+      }
 }
 
 getSankeyData(sect, c);
-// the function for moving the nodes
-function dragmove(d) {
-  d3.select(this)
-    .attr("transform",
-          "translate("
-             + d.x + ","
-             + (d.y = Math.max(
-                0, Math.min(height_sk - d.dy, d3.event.y))
-               ) + ")");
-  sankey.relayout();
-  link.attr("d", path);
-}

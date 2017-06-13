@@ -17,7 +17,7 @@ function mapMain(){
 function drawCompanyOnMap(company,location) {
 	// debugger;
 	//map function
-	var map = L.map('map',{scrollWheelZoom:false,}).setView([33.929648, -43.942662], 3);
+	var map = L.map('map',{scrollWheelZoom:false,}).setView([33.929648, -43.942662], 2);
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -49,7 +49,7 @@ function drawCompanyOnMap(company,location) {
 	 	);
 
 		locMarkerList.forEach( (marker,i) => {
-			
+
 			markerCluster.addLayer(marker);
 			// is for full name
 			marker.bindPopup(`<div class="stockdiv" id="${company[i]["Ticker symbol"]}-${company[i].Security}-stockdiv"></div>`,
@@ -82,8 +82,3 @@ function mapboxGeoQuery(query) {
  //  }
   return JSON.parse(xhttp.responseText);
 }
-
-
-
-
-

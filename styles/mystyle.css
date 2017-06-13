@@ -5,7 +5,7 @@
 
 #map {
 	height: 390px;
-	width: 100%;
+	width: 650px;
   z-index: 1;
 }
 
@@ -16,7 +16,7 @@
 
 #vis1{
 border:1px dotted black;
-width: 800px; 
+width: 800px;
 height: 340px;
 position: relative;
 background: white;
@@ -48,13 +48,14 @@ background: white;
   height: 310px;
 }
 
+
 #SearchPanelContent {
 	width: 205px;
   height: 390px;
 }
 #samerow {
-  position: absolute; 
-  left: 670px !important; 
+  position: absolute;
+  left: 670px !important;
   top: 355px !important;
 }
 #customProject {
