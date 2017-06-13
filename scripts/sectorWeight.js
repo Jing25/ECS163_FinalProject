@@ -1,9 +1,31 @@
 
+function handleLegendClick( graph ) {
+  var chart = graph.chart;
+  var hidden = graph.hidden;
+  console.log("chart: ", hidden)
+  for( var i = 0; i < chart.graphs.length; i++ ) {
+    if ( graph.id == chart.graphs[i].id ) 
+      chart.showGraph(chart.graphs[i]);
+    else 
+      chart.hideGraph(chart.graphs[i]);
+
+  }
+}
+function markerleLegendClick( graph ) {
+  for( var i = 0; i < chart.graphs.length; i++ ) {
+      chart.showGraph(chart.graphs[i]);
+  }
+}
+
+
+
 var chart = AmCharts.makeChart("weightdiv", {
     "type": "serial",
     "theme": "light",
     "legend": {
-        "useGraphSettings": true
+        "useGraphSettings": true,
+        "clickMarker": markerleLegendClick,
+        "clickLabel": handleLegendClick
     },
     "dataLoader": {
     	"url": "Data/sectorweight.csv",
@@ -47,10 +69,10 @@ var chart = AmCharts.makeChart("weightdiv", {
         "valueField": "Telecommunication Services",
 		"fillAlphas": 0
 		},{
-				"balloonText": "Utilities",
-				"bullet": "round",
-				"title": "Utilities",
-				"valueField": "Utilities",
+		"balloonText": "Utilities",
+		"bullet": "round",
+		"title": "Utilities",
+		"valueField": "Utilities",
 		"fillAlphas": 0
 		},{
         "balloonText": "Materials",
