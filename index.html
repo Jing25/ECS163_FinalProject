@@ -18,6 +18,7 @@
       <script src="https://unpkg.com/leaflet.markercluster@1.0.5/dist/leaflet.markercluster.js"></script>
 
       <script src="scripts/amcharts.js"></script>
+      <script src="scripts/radar.js"></script>
       <script src="scripts/serial.js"></script>
       <script src="scripts/amstock.js"></script>
       <script src="scripts/light.js"></script>
@@ -129,7 +130,9 @@
             </ul>
 
           </div>
-          <div id=stock></div>
+
+          <input type="button" value="Update chart" onclick="getRadarData();" />
+          <div id="radardiv"></div>
 
 <!--      <div id="subscribe">
             <h2>Stay tunned we're coming this year</h2>
@@ -283,6 +286,7 @@
       <script src="scripts/sectorWeight.js"></script>
       <script src="scripts/arr-stat.js"></script>
       <script src="scripts/mySankey.js"></script>
+      <script src="scripts/radarChart.js"></script>
 
       <!-- OWN SCRIPT END -->
 
