@@ -1,9 +1,9 @@
 var conditionPanel = {
   min: 0,
   max: 100,
-  Company: 'Apple',
-  Symbol: 'AAP',
-  Sector: 'Market',
+  Company: 'Not Specified',
+  Symbol: 'Not Specified',
+  Sector: 'All',
 };
 
 var Interaction_Selected_Data;

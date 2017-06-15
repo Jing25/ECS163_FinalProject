@@ -53,11 +53,11 @@
 
 
 #SearchPanel {
-	width: 205px;
+	/*width: 205px;*/
   height: 400px;
 }
 
-.dg li.title, .dg ul {
+/*.dg li.title, .dg ul {
   width: 205px;
 }
 .dg.main .close-button.close-bottom {
@@ -68,7 +68,7 @@
 }
 .dg .cr.number input[type="text"] {
   height: 19px;
-}
+}*/
 
 /*Paralle Coordinate*/
 
