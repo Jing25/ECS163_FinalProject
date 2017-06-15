@@ -85,3 +85,24 @@ function updateChart(data,sym) {
 
   chart.validateData();
 }
+
+function cleanData() {
+  chart.dataProvider = [{
+      "stockIndexes": "Added_Date",
+  }, {
+      "stockIndexes": "Price/High_Low",
+  }, {
+      "stockIndexes": "EBITDA",
+  }, {
+      "stockIndexes": "Dividend",
+  }, {
+      "stockIndexes": "Employee_Num",
+  }];
+  chart.graphs = [{
+          "balloonText": "[[value]]",
+          "bullet": "round",
+          "fillAlphas": 1,
+          "valueField": "start"
+      }];
+  chart.validateData();
+}
