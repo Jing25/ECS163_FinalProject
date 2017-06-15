@@ -1,7 +1,10 @@
 
-mapMain();
 
 var privateAccessToken = 'pk.eyJ1IjoiZGVjbGFueiIsImEiOiJjajNocnN0dTAwMDduMzJyejFlMnptZ3F2In0.aAaFIph2MksCaXfapoAeFQ';
+
+var map = L.map('map',{scrollWheelZoom:false,}).setView([33.929648, -43.942662], 2);
+
+mapMain();
 
 function mapMain(){
 	console.log('Hello from mapMain() at map.js');
@@ -17,7 +20,6 @@ function mapMain(){
 function drawCompanyOnMap(company,location) {
 	// debugger;
 	//map function
-	var map = L.map('map',{scrollWheelZoom:false,}).setView([33.929648, -43.942662], 2);
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -38,9 +40,10 @@ function drawCompanyOnMap(company,location) {
 		getRadarData(symb);
 	});
 
-	getMarkerCluster(combinedData);
+	getMarkerCluster(map,combinedData);
 
-	function getMarkerCluster(list) {
+	function getMarkerCluster(map,list) {
+		// debugger;
 		var locMarkerList = list.map(loc => L.marker(loc.GeoCode.features[0].geometry.coordinates.reverse()));
 
 	 	var markerCluster = L.markerClusterGroup(
@@ -48,6 +51,8 @@ function drawCompanyOnMap(company,location) {
 		 	// 	iconCreateFunction: cluster => L.divIcon({ html: '<b>' + cluster.getChildCount() + '</b>' }),
 		 	// }
 	 	);
+
+		map.removeLayer(markerCluster);
 
 		locMarkerList.forEach( (marker,i) => {
 
@@ -63,13 +68,13 @@ function drawCompanyOnMap(company,location) {
 		});
 		map.addLayer(markerCluster);
 	}
-
-
 	//comBySector.forEach( sector => { if ( sector.key == selction ) getMarkerCluster(sector.values); } );
 
 	// var data = d3.select('#map').append('div');
 	// debugger;
 }
+
+
 
 function mapboxGeoQuery(query) {
   var xhttp = new XMLHttpRequest();
