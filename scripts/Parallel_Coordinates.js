@@ -262,6 +262,19 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
     ctx.globalAlpha = d3.min([0.85/Math.pow(selected.length,0.3),1]);
     render(selected);
 
+    //UPDATE other Graph
+    var availableSector = Interaction_Selected_Data.map(d => d.Sector);
+
+    // if ( conditionPanel.Company != '' ) {
+    //
+    // }
+    //
+    var filtered  = combinedData
+      .filter(d=> availableSector.includes(d["GICS Sector"]))
+      .filter(d=> d.Security.includes('Amazon'));
+
+    getMarkerCluster(map,filtered);
+
     //output.text(d3.tsvFormat(selected.slice(0,24)));
   }
 });
