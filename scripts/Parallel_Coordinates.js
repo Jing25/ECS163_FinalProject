@@ -5,8 +5,46 @@ var margin = {top: 66, right: 110, bottom: 20, left: 188},
 
 var devicePixelRatio = window.devicePixelRatio || 1;
 
-var color = d3.scaleOrdinal()
-  .range(["#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#6b4900"]);
+// var color = d3.scaleOrdinal()
+//   .range(["#a6cee3","#1f78b4","#ff7f00","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#b2df8a","#cab2d6","#6a3d9a","#6b4900"]);
+function getColor(c) {
+  switch (c) {
+    case "Telecommunication Services":
+      return '#8dd3c7';
+      break;
+    case "Utilities":
+      return '#725D82';
+      break;
+    case "Materials":
+      return '#bebada';
+      break;
+    case "Energy":
+      return '#fb8072';
+      break;
+    case "Industrials":
+      return '#80b1d3';
+      break;
+    case "Consumer Discretionary":
+      return '#fdb462';
+      break;
+    case "Consumer Staples":
+      return '#b3de69';
+      break;
+    case "Health Care":
+      return '#fccde5';
+      break;
+    case "Financials":
+      return '#da894d';
+      break;
+    case "Information Technology":
+      return '#bc80bd'
+      break;
+    default:
+      return '#ccebc5';
+      break;
+
+  }
+}
 
 var types = {
   "Number": {
@@ -189,7 +227,7 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
   };
 
   function draw(d) {
-    ctx.strokeStyle = color(d.Sector);
+    ctx.strokeStyle = getColor(d.Sector);
     ctx.beginPath();
     var coords = project(d);
     coords.forEach(function(p,i) {
@@ -285,5 +323,5 @@ function d3_functor(v) {
 
 function getSankeyDataWrapper() {
   //color(Interaction_Selected_Data[0].Sector)
-  getSankeyData(Interaction_Selected_Data[0].Sector, color(Interaction_Selected_Data[0].Sector));
+  getSankeyData(Interaction_Selected_Data[0].Sector, getColor(Interaction_Selected_Data[0].Sector));
 }

@@ -194,92 +194,130 @@ function getSankeyData(sect, c) {
        graph.nodes[i] = { "name": d };
      });
 
-     drawSankey(graph, c);
+     svg_sk.selectAll(".link").remove();
+     svg_sk.selectAll(".node").remove();
+
+     sankey
+         .nodes(graph.nodes)
+         .links(graph.links)
+         .layout(32);
+
+     // add in the links
+     var link = svg_sk.append("g").selectAll(".link")
+         .data(graph.links)
+       .enter().append("path")
+         .attr("class", "link")
+         .attr("d", path)
+         .style("stroke-width", function(d) { return Math.max(1, d.dy); })
+         .sort(function(a, b) { return b.dy - a.dy; })
+         .on("click", function(p) {
+           console.log("links: ", p);
+         });
+
+
+     // add the link titles
+     link.append("title")
+           .text(function(d) {
+           return d.source.name + " → " +
+                   d.target.name + "\n" + format(d.value); });
+
+     // add in the nodes
+     var node = svg_sk.append("g").selectAll(".node")
+         .data(graph.nodes)
+       .enter().append("g")
+         .attr("class", "node")
+         .attr("transform", function(d) {
+         return "translate(" + d.x + "," + d.y + ")"; })
+         //.on("click", getData(p))
+         .on("click", function(p) {
+                    // marketCap.min = 200;
+                    // marketCap.max = "max";
+          // console.log(p.name);
+          //  if (p.name === "Mega Cap") {
+          //          marketCap.min = 200;
+          //          marketCap.max = "max";
+          //  }
+             switch (p.name) {
+               case "Mega Cap":
+                 marketCap.min = 200;
+                 marketCap.max = "max";
+                 return 0
+                 break;
+               case "Large Cap":
+                 marketCap.min = 10;
+                 marketCap.max = 199.9;
+                 return 0
+                 break;
+               case "Mid Cap":
+                 marketCap.min = 2;
+                 marketCap.max = 9.9;
+                 //return
+                 break;
+               case "Normal":
+                 comValue.min = lower;
+                 comValue.max = upper;
+                 return 0
+                 break;
+               case "Overvalued":
+                 comValue.min = upper;
+                 comValue.max = "max";
+                 return 0
+                 break;
+               case "Undervalued":
+                 comValue.min = "min";
+                 comValue.max = lower;
+                 return 0
+                 break;
+               default:
+                 break;
+             }
+           })
+         .call(d3.drag()
+           .subject(function(d) {
+             return d;
+           })
+           .on("start", function() {
+             this.parentNode.appendChild(this);
+           })
+           .on("drag", dragmove));
+
+     // add the rectangles for the nodes
+     node.append("rect")
+         .attr("height", function(d) { return d.dy; })
+         .attr("width", sankey.nodeWidth())
+         //.style("fill", function(d) {
+         //return d.color = color(d.name.replace(/ .*/, "")); })
+         .style("fill", c)
+         .style("stroke", function(d) {
+         return d3.rgb(d.color).darker(2); })
+       .append("title")
+         .text(function(d) {
+         return d.name + "\n" + format(d.value); });
+
+     // add in the title for the nodes
+     node.append("text")
+         .attr("x", -6)
+         .attr("y", function(d) { return d.dy / 2; })
+         .attr("dy", ".35em")
+         .attr("text-anchor", "end")
+         .attr("transform", null)
+         .text(function(d) { return d.name; })
+       .filter(function(d) { return d.x < width_sk / 2; })
+         .attr("x", 6 + sankey.nodeWidth())
+         .attr("text-anchor", "start");
+
+      // the function for moving the nodes
+         function dragmove(d) {
+           d3.select(this)
+             .attr("transform",
+                   "translate("
+                      + d.x + ","
+                      + (d.y = Math.max(
+                         0, Math.min(height_sk - d.dy, d3.event.y))
+                        ) + ")");
+           sankey.relayout();
+           link.attr("d", path);
+         }
+     //drawSankey(graph, c);
   })
-}
-
-function drawSankey(graph, c) {
-  svg_sk.selectAll(".link").remove();
-  svg_sk.selectAll(".node").remove();
-
-  sankey
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .layout(32);
-
-  // add in the links
-  var link = svg_sk.append("g").selectAll(".link")
-      .data(graph.links)
-    .enter().append("path")
-      .attr("class", "link")
-      .attr("d", path)
-      .style("stroke-width", function(d) { return Math.max(1, d.dy); })
-      .sort(function(a, b) { return b.dy - a.dy; })
-      .on("click", function(p) {
-        console.log("links: ", p);
-      });
-
-
-  // add the link titles
-  link.append("title")
-        .text(function(d) {
-        return d.source.name + " → " +
-                d.target.name + "\n" + format(d.value); });
-
-  // add in the nodes
-  var node = svg_sk.append("g").selectAll(".node")
-      .data(graph.nodes)
-    .enter().append("g")
-      .attr("class", "node")
-      .attr("transform", function(d) {
-      return "translate(" + d.x + "," + d.y + ")"; })
-      .on("click", function(p) {
-          console.log("here: ", p)
-        })
-      .call(d3.drag()
-        .subject(function(d) {
-          return d;
-        })
-        .on("start", function() {
-          this.parentNode.appendChild(this);
-        })
-        .on("drag", dragmove));
-
-  // add the rectangles for the nodes
-  node.append("rect")
-      .attr("height", function(d) { return d.dy; })
-      .attr("width", sankey.nodeWidth())
-      //.style("fill", function(d) {
-      //return d.color = color(d.name.replace(/ .*/, "")); })
-      .style("fill", c)
-      .style("stroke", function(d) {
-      return d3.rgb(d.color).darker(2); })
-    .append("title")
-      .text(function(d) {
-      return d.name + "\n" + format(d.value); });
-
-  // add in the title for the nodes
-  node.append("text")
-      .attr("x", -6)
-      .attr("y", function(d) { return d.dy / 2; })
-      .attr("dy", ".35em")
-      .attr("text-anchor", "end")
-      .attr("transform", null)
-      .text(function(d) { return d.name; })
-    .filter(function(d) { return d.x < width_sk / 2; })
-      .attr("x", 6 + sankey.nodeWidth())
-      .attr("text-anchor", "start");
-
-   // the function for moving the nodes
-      function dragmove(d) {
-        d3.select(this)
-          .attr("transform",
-                "translate("
-                   + d.x + ","
-                   + (d.y = Math.max(
-                      0, Math.min(height_sk - d.dy, d3.event.y))
-                     ) + ")");
-        sankey.relayout();
-        link.attr("d", path);
-      }
 }

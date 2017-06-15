@@ -13,3 +13,13 @@ var combinedData;
 var map;
 
 var markerCluster;
+
+var marketCap = {
+  min: 2,
+  max: 10
+}
+
+var comValue = {
+  min: 0,
+  max: 100
+}
