@@ -173,7 +173,7 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
 
   d3.selectAll(".axis.Sector .tick text")
     .style("fill", color);
-    
+
   // output.text(d3.tsvFormat(data.slice(0,24)));
 
   function project(d) {
@@ -212,7 +212,7 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
         }
         return;
       }
-      
+
       if (i == 0) {
         ctx.moveTo(p[0],p[1]);
         return;
@@ -255,6 +255,7 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
 
     //Global Variable
     Interaction_Selected_Data = selected;
+    //getGlobalVar(selected);
     //Global Variable END
 
     ctx.clearRect(0,0,width,height);
@@ -268,3 +269,8 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
 function d3_functor(v) {
   return typeof v === "function" ? v : function() { return v; };
 };
+
+function getSankeyDataWrapper() {
+  //color(Interaction_Selected_Data[0].Sector)
+  getSankeyData(Interaction_Selected_Data[0].Sector, color(Interaction_Selected_Data[0].Sector));
+}
