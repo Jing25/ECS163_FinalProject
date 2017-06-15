@@ -66,14 +66,13 @@ function updateChart(data,sym) {
 
   var valueFields = Object.keys(d[0]).filter(function(value) {
       var gv = g.filter(function(s) {
-        return s.valueField !== value;
-      });
-      if (gv.length !== 0 && value !== chart.categoryField) {
-        for (var i = 0; i < gv.length; i++) {
-          return gv[i].valueField;
-        }
+        return s.valueField == value;
+      })
+      if (gv.length == 0 && value != chart.categoryField) {
+        return value;
       }
     });
+  console.log(valueFields);
   valueFields.forEach( function( valueField ) {
     chart.graphs.push({
       "title": sym,
