@@ -63,11 +63,6 @@ var dimensions = [
     scale: d3.scaleSqrt().range([innerHeight, 0])
   },
   {
-    key: "EBITDA",
-    type: types["Number"],
-    scale: d3.scaleSqrt().range([innerHeight, 0])
-  },
-  {
     key: "Price/Sales",
     type: types["Number"],
     scale: d3.scaleSqrt().range([innerHeight, 0])
