@@ -11,13 +11,13 @@ var chart = AmCharts.makeChart("radardiv", {
     "dataProvider": [{
         "stockIndexes": "Added_Date",
     }, {
-        "stockIndexes": "Price/High_Low",
+        "stockIndexes": "PHL",
     }, {
         "stockIndexes": "EBITDA",
     }, {
         "stockIndexes": "Dividend",
     }, {
-        "stockIndexes": "Employee_Num",
+        "stockIndexes": "E_Num",
     }],
     "valueAxes": [{
         "axisTitleOffset": 20,
@@ -90,13 +90,13 @@ function cleanData() {
   chart.dataProvider = [{
       "stockIndexes": "Added_Date",
   }, {
-      "stockIndexes": "Price/High_Low",
+      "stockIndexes": "PHL",
   }, {
       "stockIndexes": "EBITDA",
   }, {
       "stockIndexes": "Dividend",
   }, {
-      "stockIndexes": "Employee_Num",
+      "stockIndexes": "E_Num",
   }];
   chart.graphs = [{
           "balloonText": "[[value]]",

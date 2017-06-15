@@ -86,16 +86,33 @@
           <div class="project" >
             <div class="gallery project_navigation" id="customProject">
 
-              <div class="item col-sm-10 col-xs-10">
-                <div id="vis1" width="600" height="400"></div>
-                <figcaption class="caption">
-                  <div class="photo-details">
-                    <h4>Sector</h4>
-                    <span>For Value Estimation</span>
+              <div class="item row-eq-height">
+
+                <div class="col-sm-10 col-xs-10">
+                  <div>
+                    <div id="vis1" width="600" height="400"></div>
+                    <figcaption class="caption">
+                      <div class="photo-details">
+                        <h4>Sector</h4>
+                        <span>For Value Estimation</span>
+                      </div>
+                    <a href="#SectorSanky" onclick="getSankeyDataWrapper();"class="view">VIEW</a>
+                    </figcaption>
                   </div>
-                  <a href="#SectorSanky" onclick="getSankeyDataWrapper();"class="view">VIEW</a>
-                </figcaption>
+                </div>
+
+                <div class="col-sm-2 col-xs-2">
+                  <div id="SearchPanel"></div>
+                  <figcaption class="caption">
+                    <div class="photo-details">
+                      <h4>Sector</h4>
+                      <span>By Weight</span>
+                    </div>
+                    <a href="#SectorWeight" class="view">VIEW</a>
+                  </figcaption>
+                </div>
               </div>
+
               <div class="item">
                <div class="col-sm-8">
                  <!-- Map -->
@@ -109,18 +126,6 @@
                  <input type="button" value="Clean All" onclick="cleanData();" />
                </div>
               </div>
-
-<!--               <div class="item col-sm-2 col-xs-2">
-                  <div id="SearchPanel"><div id="SearchPanelContent"></div></div>
-                  <figcaption class="caption">
-                    <div class="photo-details">
-                      <h4>Sector</h4>
-                      <span>By Weight</span>
-                    </div>
-                    <a href="#SectorWeight" class="view">VIEW</a>
-                  </figcaption>
-              </div>
- -->
 
               <!-- <div class="item col-sm-9 col-xs-9">
                   <div id="map"></div>
@@ -195,7 +200,7 @@
       <script src="scripts/sectorWeight.js"></script>
       <script src="scripts/arr-stat.js"></script>
       <script src="scripts/mySankey.js"></script>
-      <script src="scripts/radarChart.js"></script>    
+      <script src="scripts/radarChart.js"></script>
       <!-- OWN SCRIPT END -->
 
   </body>
