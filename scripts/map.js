@@ -2,7 +2,7 @@
 
 var privateAccessToken = 'pk.eyJ1IjoiZGVjbGFueiIsImEiOiJjajNocnN0dTAwMDduMzJyejFlMnptZ3F2In0.aAaFIph2MksCaXfapoAeFQ';
 
-var map = L.map('map',{scrollWheelZoom:false,}).setView([33.929648, -43.942662], 2);
+map = L.map('map',{scrollWheelZoom:false,}).setView([33.929648, -43.942662], 2);
 
 mapMain();
 
@@ -17,6 +17,34 @@ function mapMain(){
 	console.log('End mapMain.js');
 }
 
+function getMarkerCluster(map,list) {
+	// debugger;
+	var locMarkerList = list.map(loc => L.marker(loc.GeoCode.features[0].geometry.coordinates.reverse()));
+
+	if( markerCluster != undefined)
+		map.removeLayer(markerCluster);
+
+ 	markerCluster = L.markerClusterGroup(
+	 	// {
+	 	// 	iconCreateFunction: cluster => L.divIcon({ html: '<b>' + cluster.getChildCount() + '</b>' }),
+	 	// }
+ 	);
+
+	locMarkerList.forEach( (marker,i) => {
+
+		markerCluster.addLayer(marker);
+		// is for full name
+		marker.bindPopup(`<div class="stockdiv" id="${list[i]["Ticker symbol"]}-${list[i].Security}-stockdiv"></div>`,
+			{ maxWidth:600,
+			});
+		marker.bindTooltip(`${list[i].Security}`);
+
+		marker.on('mouseover', function (e) {this.openTooltip();});
+
+	});
+	map.addLayer(markerCluster);
+}
+
 function drawCompanyOnMap(company,location) {
 	// debugger;
 	//map function
@@ -28,8 +56,9 @@ function drawCompanyOnMap(company,location) {
     accessToken: privateAccessToken,
 	}).addTo(map);
 
-	var combinedData = company.map((d,i)=>{ d.GeoCode = location[i]; return d});
-	var comBySector = d3.nest().key(d=>d["GICS Sector"]).entries(combinedData);
+	//GLOBAL
+	combinedData = company.map((d,i)=>{ d.GeoCode = location[i]; return d});
+	//var comBySector = d3.nest().key(d=>d["GICS Sector"]).entries(combinedData);
 
 	map.on('popupopen', (object) =>{
 		// debugger;
@@ -42,32 +71,6 @@ function drawCompanyOnMap(company,location) {
 
 	getMarkerCluster(map,combinedData);
 
-	function getMarkerCluster(map,list) {
-		// debugger;
-		var locMarkerList = list.map(loc => L.marker(loc.GeoCode.features[0].geometry.coordinates.reverse()));
-
-	 	var markerCluster = L.markerClusterGroup(
-		 	// {
-		 	// 	iconCreateFunction: cluster => L.divIcon({ html: '<b>' + cluster.getChildCount() + '</b>' }),
-		 	// }
-	 	);
-
-		map.removeLayer(markerCluster);
-
-		locMarkerList.forEach( (marker,i) => {
-
-			markerCluster.addLayer(marker);
-			// is for full name
-			marker.bindPopup(`<div class="stockdiv" id="${company[i]["Ticker symbol"]}-${company[i].Security}-stockdiv"></div>`,
-				{ maxWidth:600,
-				});
-			marker.bindTooltip(`${company[i].Security}`);
-
-			marker.on('mouseover', function (e) {this.openTooltip();});
-
-		});
-		map.addLayer(markerCluster);
-	}
 	//comBySector.forEach( sector => { if ( sector.key == selction ) getMarkerCluster(sector.values); } );
 
 	// var data = d3.select('#map').append('div');

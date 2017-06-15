@@ -29,5 +29,7 @@ function drawSearchPanel() {
     // guiFolder.open();
     SearchGuiArray.push(guiFolder);
   } 
-  gui.add(conditionPanel,'Company');d
+  gui.add(conditionPanel,'Company');
+  gui.add(conditionPanel,'Symbol');
+
 }
