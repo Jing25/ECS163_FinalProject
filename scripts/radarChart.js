@@ -9,13 +9,15 @@ var chart = AmCharts.makeChart("radardiv", {
     },
     //"colors": ["rgba(#c3c4c4, 0.93)", "#82a3cf"],
     "dataProvider": [{
-        "stockIndexes": "Added Date",
+        "stockIndexes": "Added_Date",
     }, {
-        "stockIndexes": "Price",
+        "stockIndexes": "Price/High_Low",
     }, {
         "stockIndexes": "EBITDA",
     }, {
         "stockIndexes": "Dividend",
+    }, {
+        "stockIndexes": "Employee_Num",
     }],
     "valueAxes": [{
         "axisTitleOffset": 20,
@@ -25,7 +27,7 @@ var chart = AmCharts.makeChart("radardiv", {
     }],
     "startDuration": 1,
     "graphs": [{
-        "balloonText": "[[value]] litres of beer per year",
+        "balloonText": "[[value]]",
         "bullet": "round",
         "fillAlphas": 1,
         "valueField": "start"
@@ -35,7 +37,7 @@ var chart = AmCharts.makeChart("radardiv", {
 
 function getRadarData() {
   sym = "AMGN";
-    AmCharts.loadFile("Data/radarData.csv", {}, function(data) {
+    AmCharts.loadFile("Data/radarData1.csv", {}, function(data) {
     var chartData = AmCharts.parseCSV(data, {
       "delimiter": ",",
       "useColumnNames": true
@@ -57,6 +59,7 @@ function updateChart(data) {
   d[1][sym] = +data.Standardized_Price;
   d[2][sym] = +data.Standardized_EBITDA;
   d[3][sym] = +data.Standardized_Dividend;
+  d[4][sym] = +data.Standardized_EmpNum;
 
   console.log("datap: ", d)
 
