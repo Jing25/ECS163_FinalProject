@@ -146,10 +146,13 @@ var axes = svg.selectAll(".axis")
     .attr("class", function(d) { return "axis " + d.key.replace(/ /g, "_"); })
     .attr("transform", function(d,i) { return "translate(" + xscale(i) + ")"; });
 
-d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
+var render;
+var data;
+d3.csv("Data/Parallel_Coordinates.csv", function(error, dataInCall) {
   if (error) throw error;
   // debugger;
   // shuffle the data!
+  data = dataInCall;
   data = d3.shuffle(data);
 
   data.forEach(function(d) {
@@ -176,7 +179,7 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
     dim.scale.domain(dim.domain);
   });
 
-  var render = renderQueue(draw).rate(50);
+  render = renderQueue(draw).rate(50);
 
   ctx.clearRect(0,0,width,height);
   ctx.globalAlpha = d3.min([0.85/Math.pow(data.length,0.3),1]);
@@ -265,6 +268,8 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
     d3.event.sourceEvent.stopPropagation();
   }
 
+}); 
+
   // Handles a brush event, toggling the display of foreground lines.
   function brush() {
     render.invalidate();
@@ -300,22 +305,30 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
     ctx.globalAlpha = d3.min([0.85/Math.pow(selected.length,0.3),1]);
     render(selected);
 
+    // debugger;
     //UPDATE other Graph
     var availableSector = Interaction_Selected_Data.map(d => d.Sector);
 
-    // if ( conditionPanel.Company != '' ) {
-    //
-    // }
-    //
-    var filtered  = combinedData
-      .filter(d=> availableSector.includes(d["GICS Sector"]))
-      .filter(d=> d.Security.includes('Amazon'));
+    var filtered  = combinedData;
+    if ( conditionPanel.Sector != 'All' ) {
+      filtered = filtered.filter(d=> d["GICS Sector"] == conditionPanel.Sector);
+    } else {
+      filtered = filtered.filter(d=> availableSector.includes(d["GICS Sector"]));
+    }
+    if ( conditionPanel.Company != 'Not Specified' ) {
+      filtered = filtered.filter(d=> d.Security.includes(conditionPanel.Company));
+    }      
+
+    if(!availableSector.includes(conditionPanel.Sector)){
+      alert("Make Sure Control Panel and Selected Parallel Coordinates sharing common sectors");
+    }
+    // debugger;
 
     getMarkerCluster(map,filtered);
 
     //output.text(d3.tsvFormat(selected.slice(0,24)));
   }
-});
+
 
 function d3_functor(v) {
   return typeof v === "function" ? v : function() { return v; };

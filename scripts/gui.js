@@ -20,9 +20,10 @@ function drawSearchPanel() {
   var SearchPanelContainer = document.getElementById('SearchPanel');
   SearchPanelContainer.appendChild(gui.domElement);
 
-  gui.add(conditionPanel,'Sector',["All", "Industrials", "Health Care", "Information Technology",
-  "Consumer Discretionary", "Utilities", "Financials", "Materials",
-  "Consumer Staples", "Real Estate", "Energy", "Telecommunications Services"]);
+  var sectorSelection = gui.add(conditionPanel,'Sector',["All", "Industrials", "Health Care", "Information Technology","Consumer Discretionary", "Utilities", "Financials", "Materials","Consumer Staples", "Real Estate", "Energy", "Telecommunications Services"]);
+  
+  sectorSelection.onFinishChange((v) => { brush(); brush() });
+
   var SearchGuiArray = [];
   for( key in units ){
     var guiFolder = gui.addFolder(units[key].name);
