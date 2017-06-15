@@ -35,8 +35,8 @@ var chart = AmCharts.makeChart("radardiv", {
     "categoryField": "stockIndexes"
 });
 
-function getRadarData() {
-  sym = "AMGN";
+function getRadarData(sym) {
+    // debugger;
     AmCharts.loadFile("Data/radarData1.csv", {}, function(data) {
     var chartData = AmCharts.parseCSV(data, {
       "delimiter": ",",
@@ -46,11 +46,11 @@ function getRadarData() {
       return d.Symbol == sym;
     });
 
-    updateChart(data[0]);
+    updateChart(data[0],sym);
   });
 }
 
-function updateChart(data) {
+function updateChart(data,sym) {
 
   var d = chart.dataProvider;
   var g = chart.graphs;

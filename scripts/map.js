@@ -35,6 +35,7 @@ function drawCompanyOnMap(company,location) {
 		var symb = companyInfos[0];
 		var fullCompanyName = companyInfos[1];
 		drawStockChart(symb,fullCompanyName);
+		getRadarData(symb);
 	});
 
 	getMarkerCluster(combinedData);
