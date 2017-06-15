@@ -1,7 +1,6 @@
 console.log("the gui script is loaded");
 
 var units = {
-  // sec: {name: "Sector", unit: "", max: 0},
   mac: {name: "Market Cap", unit: " UNT", max: 733, min: -1},
   pri: {name: "Price", unit: " USD", max: 1738, min: -1},
   bov: {name: "Book Value", unit: " BVPS", max: 214, min: -66},
@@ -18,20 +17,17 @@ function drawSearchPanel() {
     autoPlace: false,
   });
 
-  var text = {
-    min: 0,
-    max: 100,
-  };
-
   var SearchPanelContainer = document.getElementById('SearchPanel');
   SearchPanelContainer.appendChild(gui.domElement);
 
+  gui.add(conditionPanel,'Sector',['Market',"Information"]);
   var SearchGuiArray = [];
   for( key in units ){
     var guiFolder = gui.addFolder(units[key].name);
-    guiFolder.add(text,"min",units[key].min,units[key].max);
-    guiFolder.add(text,"max",units[key].min,units[key].max);
+    guiFolder.add(conditionPanel,"min",units[key].min,units[key].max);
+    guiFolder.add(conditionPanel,"max",units[key].min,units[key].max);
     // guiFolder.open();
     SearchGuiArray.push(guiFolder);
   } 
+  gui.add(conditionPanel,'Company');d
 }
