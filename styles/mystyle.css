@@ -53,11 +53,11 @@
 
 
 #SearchPanel {
-	width: 305px;
+	/*width: 305px;*/
   height: 400px;
 }
-
-/*.dg li.title, .dg ul {
+/*
+.dg li.title, .dg ul {
   width: 205px;
 }
 .dg.main .close-button.close-bottom {

@@ -259,13 +259,18 @@ function getSankeyData(sect, c) {
                  return 0
                  break;
                case "Overvalued":
-                 comValue.min = upper;
-                 comValue.max = "max";
+                 // comValue.min = upper;
+                 // comValue.max = "max";
+                  // console.log(dataSec);
+                  var outputText = (dataSec.filter(d=> d["Price/Earnings"] > upper).map(d => d.Name)).join('***************************************************************************');;
+                  d3.select('#sankeytext').append('p').text(outputText);
                  return 0
                  break;
                case "Undervalued":
-                 comValue.min = "min";
-                 comValue.max = lower;
+                 // comValue.min = "min";
+                 // comValue.max = lower;
+                 var outputText = (dataSec.filter(d=> d["Price/Earnings"] < lower).map(d => d.Name)).join('***********************************************************************************');
+                  d3.select('#sankeytext').append('p').text(outputText);
                  return 0
                  break;
                default:

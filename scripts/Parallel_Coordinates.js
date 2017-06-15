@@ -1,12 +1,12 @@
 var margin = {top: 66, right: 110, bottom: 20, left: 160},
-    width = 1150 - margin.left - margin.right,
+    width = 1000 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom,
     innerHeight = height - 2;
 
 var devicePixelRatio = window.devicePixelRatio || 1;
 
-// var color = d3.scaleOrdinal()
-//   .range(["#a6cee3","#1f78b4","#ff7f00","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#b2df8a","#cab2d6","#6a3d9a","#6b4900"]);
+var color = d3.scaleOrdinal()
+  .range(["#fdb462","#b3de69","#fb8072","#da894d","#fccde5","#80b1d3","#bc80bd","#bebada","#ccebc5","#8dd3c7","#725D82"]);
 function getColor(c) {
   switch (c) {
     case "Telecommunication Services":
@@ -213,7 +213,7 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, dataInCall) {
       .attr("width", 16);
 
   d3.selectAll(".axis.Sector .tick text")
-    .style("fill", color);
+    .style("fill", "black");
 
   // output.text(d3.tsvFormat(data.slice(0,24)));
 
@@ -309,6 +309,8 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, dataInCall) {
     //UPDATE other Graph
     var availableSector = Interaction_Selected_Data.map(d => d.Sector);
 
+    var availablePriceMinMax = d3.extent(Interaction_Selected_Data, d=>d.Price);
+
     var filtered  = combinedData;
     if ( conditionPanel.Sector != 'All' ) {
       filtered = filtered.filter(d=> d["GICS Sector"] == conditionPanel.Sector);
@@ -317,9 +319,10 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, dataInCall) {
     }
     if ( conditionPanel.Company != 'Not Specified' ) {
       filtered = filtered.filter(d=> d.Security.includes(conditionPanel.Company));
-    }      
+    }
 
-    if(!availableSector.includes(conditionPanel.Sector)){
+    if(!availableSector.includes(conditionPanel.Sector) && 
+        conditionPanel.Sector != 'All') {
       alert("Make Sure Control Panel and Selected Parallel Coordinates sharing common sectors");
     }
     // debugger;

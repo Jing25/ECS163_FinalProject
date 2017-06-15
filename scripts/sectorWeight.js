@@ -3,23 +3,23 @@ function handleLegendClick( graph ) {
   var chart = graph.chart;
   var hidden = graph.hidden;
   console.log("chart: ", hidden)
-  for( var i = 0; i < chart.graphs.length; i++ ) {
-    if ( graph.id == chart.graphs[i].id )
-      chart.showGraph(chart.graphs[i]);
+  for( var i = 0; i < chart2.graphs.length; i++ ) {
+    if ( graph.id == chart2.graphs[i].id )
+      chart2.showGraph(chart2.graphs[i]);
     else
-      chart.hideGraph(chart.graphs[i]);
+      chart2.hideGraph(chart2.graphs[i]);
 
   }
 }
 function markerleLegendClick( graph ) {
-  for( var i = 0; i < chart.graphs.length; i++ ) {
-      chart.showGraph(chart.graphs[i]);
+  for( var i = 0; i < chart2.graphs.length; i++ ) {
+      chart2.showGraph(chart2.graphs[i]);
   }
 }
 
 //"#5DA5B3","#D58323","#DD6CA7","#54AF52","#8C92E8","#E15E5A","#725D82","#776327","#50AB84","#954D56","#AB9C27","#517C3F","#9D5130","#357468","#5E9ACF","#C47DCB","#7D9E33","#DB7F85","#BA89AD","#4C6C86","#B59248","#D8597D","#944F7E","#D67D4B","#8F86C2"]);
 
-var chart = AmCharts.makeChart("weightdiv", {
+var chart2 = AmCharts.makeChart("weightdiv", {
     "type": "serial",
     "theme": "light",
     "colors": ['#8dd3c7','#725D82','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#da894d','#bc80bd','#ccebc5'],
