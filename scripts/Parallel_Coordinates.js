@@ -253,6 +253,10 @@ d3.csv("Data/Parallel_Coordinates.csv", function(error, data) {
       }
     });
 
+    //Global Variable
+    Interaction_Selected_Data = selected;
+    //Global Variable END
+
     ctx.clearRect(0,0,width,height);
     ctx.globalAlpha = d3.min([0.85/Math.pow(selected.length,0.3),1]);
     render(selected);
