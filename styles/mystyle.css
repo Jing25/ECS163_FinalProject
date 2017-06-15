@@ -9,7 +9,7 @@
 }
 
 #map {
-	height: 450px;
+	height: 400px;
 	width: 650px;
   z-index: 1;
 }
@@ -150,3 +150,7 @@
   font-size: 10px;
   overflow: auto;
 }*/
+
+.c {
+  color: #01050a;
+}

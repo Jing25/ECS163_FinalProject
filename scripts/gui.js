@@ -20,7 +20,9 @@ function drawSearchPanel() {
   var SearchPanelContainer = document.getElementById('SearchPanel');
   SearchPanelContainer.appendChild(gui.domElement);
 
-  gui.add(conditionPanel,'Sector',['Market',"Information"]);
+  gui.add(conditionPanel,'Sector',["Industrials", "Health Care", "Information Technology",
+  "Consumer Discretionary", "Utilities", "Financials", "Materials",
+  "Consumer Staples", "Real Estate", "Energy", "Telecommunications Services"]);
   var SearchGuiArray = [];
   for( key in units ){
     var guiFolder = gui.addFolder(units[key].name);
@@ -28,6 +30,6 @@ function drawSearchPanel() {
     guiFolder.add(conditionPanel,"max",units[key].min,units[key].max);
     // guiFolder.open();
     SearchGuiArray.push(guiFolder);
-  } 
+  }
   gui.add(conditionPanel,'Company');d
 }
