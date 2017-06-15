@@ -194,11 +194,11 @@ function getSankeyData(sect, c) {
        graph.nodes[i] = { "name": d };
      });
 
-     drawSankey(graph);
+     drawSankey(graph, c);
   })
 }
 
-function drawSankey(graph) {
+function drawSankey(graph, c) {
   svg_sk.selectAll(".link").remove();
   svg_sk.selectAll(".node").remove();
 
@@ -283,5 +283,3 @@ function drawSankey(graph) {
         link.attr("d", path);
       }
 }
-
-getSankeyData(sect, c);
