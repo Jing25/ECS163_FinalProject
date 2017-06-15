@@ -56,15 +56,7 @@
 	width: 205px;
   height: 390px;
 }
-/*#samerow {
-  position: absolute;
-  left: 670px !important;
-  top: 355px !important;
-}*/
 
-#customProject {
-  height: 750px !important;
-}
 .dg li.title, .dg ul {
   width: 205px;
 }
