@@ -26,8 +26,6 @@ function drawSearchPanel() {
   var SearchPanelContainer = document.getElementById('SearchPanel');
   SearchPanelContainer.appendChild(gui.domElement);
 
-  var sectionGui = gui.add(text,"Sector",["Infomation","Materials"]);
-  var companyName = gui.add(text,) 
   var SearchGuiArray = [];
   for( key in units ){
     var guiFolder = gui.addFolder(units[key].name);
@@ -36,5 +34,4 @@ function drawSearchPanel() {
     // guiFolder.open();
     SearchGuiArray.push(guiFolder);
   } 
-
 }
