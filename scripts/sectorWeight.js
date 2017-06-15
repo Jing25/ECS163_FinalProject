@@ -1,6 +1,6 @@
 
 function handleLegendClick( graph ) {
-  var chart = graph.chart;
+  var chart = graph.chart2;
   var hidden = graph.hidden;
   console.log("chart: ", hidden)
   for( var i = 0; i < chart2.graphs.length; i++ ) {
@@ -15,6 +15,7 @@ function markerleLegendClick( graph ) {
   for( var i = 0; i < chart2.graphs.length; i++ ) {
       chart2.showGraph(chart2.graphs[i]);
   }
+  console.log("here")
 }
 
 //"#5DA5B3","#D58323","#DD6CA7","#54AF52","#8C92E8","#E15E5A","#725D82","#776327","#50AB84","#954D56","#AB9C27","#517C3F","#9D5130","#357468","#5E9ACF","#C47DCB","#7D9E33","#DB7F85","#BA89AD","#4C6C86","#B59248","#D8597D","#944F7E","#D67D4B","#8F86C2"]);
