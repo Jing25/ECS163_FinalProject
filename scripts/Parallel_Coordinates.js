@@ -1,5 +1,5 @@
-var margin = {top: 66, right: 110, bottom: 20, left: 188},
-    width = 1000 - margin.left - margin.right,
+var margin = {top: 66, right: 110, bottom: 20, left: 160},
+    width = 1150 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom,
     innerHeight = height - 2;
 
